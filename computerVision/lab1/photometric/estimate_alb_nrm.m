@@ -29,8 +29,17 @@ normal = zeros(h, w, 3);
 %   albedo at this point is |g|
 %   normal at this point is g / |g|
 
+[px, py, photocount] = size(image_stack);
 
+vectorI = zeros(photocount, px*py);
 
+for i = 1:photocount
+    imageV = image_stack(:,:,i)
+    imageV = imageV(:)'
+    vectorI(i,:) = imageV;
+end
+
+disp(vectorI)
 % =========================================================================
 
 end
