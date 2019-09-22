@@ -31,15 +31,21 @@ normal = zeros(h, w, 3);
 
 [px, py, photocount] = size(image_stack);
 
-vectorI = zeros(photocount, px*py);
-
-for i = 1:photocount
-    imageV = image_stack(:,:,i)
-    imageV = imageV(:)'
-    vectorI(i,:) = imageV;
+for k = 1:h
+    for j = 1:w
+        i = image_stack(k, j,:);
+        i = i(:);
+        
+        scriptI = diag(i);
+        [g,~]=linsolve( scriptI*scriptV,  scriptI*i);
+        albedo(k,j) = norm(g);
+        normal(k,j) = g/norm(g);
+    end
+    %imageV = image_stack(:,:,i)
+    %imageV = imageV(:)'
+    %vectorI(i,:) = imageV;
 end
 
-disp(vectorI)
 % =========================================================================
 
 end

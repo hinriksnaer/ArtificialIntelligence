@@ -2,9 +2,6 @@ R = imread('ball_albedo.png');
 S = imread('ball_shading.png');
 I = imread('ball.png');
 
-%r = max(max(R(:,:,1)));
-%g = max(max(R(:,:,2)));
-%b = max(max(R(:,:,3)));
 
 R(R == 141) = 255;
 R(R ~= 255) = 0;
@@ -15,15 +12,6 @@ I = im2double(I);
 RS = R.*S;
 
 subplot(1,2,1),imshow(I);
+title('Original Image');
 subplot(1,2,2),imshow(RS);
-
-%Split into RGB Channels
-r = RS(:,:,1);
-g = RS(:,:,2);
-b = RS(:,:,3);
-%Get histValues for each channel
-[yRed, x] = imhist(r);
-[yGreen, x] = imhist(g);
-[yBlue, x] = imhist(b);
-%Plot them together in one plot
-plot(x, yRed, 'Red', x, yGreen, 'Green', x, yBlue, 'Blue');
+title({'Reconstructed image where';'albedo RGB(0,255,0)'});
