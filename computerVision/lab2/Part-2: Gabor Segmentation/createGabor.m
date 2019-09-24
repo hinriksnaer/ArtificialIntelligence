@@ -66,8 +66,8 @@ myGabor(:,:,1) = myGabor_real;
 myGabor(:,:,2) = myGabor_imaginary;
 
 % figure;
-% subplot(121), imshow(myGabor_real,[]);
-% subplot(122), imshow(myGabor_imaginary, []);
+subplot(121), imshow(myGabor_real,[]);
+subplot(122), imshow(myGabor_imaginary, []);
 end
 
 
@@ -77,7 +77,7 @@ function rotMat = generateRotationMatrix(theta)
 % ----------------------------------------------------------
 % Returns the rotation matrix. 
 % \\ Hint: https://en.wikipedia.org/wiki/Rotation_matrix \\
-rotMat = % \\TODO: code the rotation matrix given theta.
+rotMat = [cos(theta), -sin(theta);sin(theta), cos(theta)];
 end
 
 % ----------------------------------------------------------
@@ -104,7 +104,7 @@ end
 function gaussEnv = createGauss(rot_x, rot_y, gamma, sigma)
 % ----------------------------------------------------------
 % Returns the 2D Gaussian Envelope. 
-gaussEnv = % \\TODO: Implement the Gaussian envelope.
+gaussEnv = mvnpdf([rot_x,rot_y],gamma,sigma); % \\TODO: Implement the Gaussian envelope.
 
 % Reshape the vector representation to matrix.
 gaussEnv = reshape(gaussEnv, sqrt(length(gaussEnv)), []);
