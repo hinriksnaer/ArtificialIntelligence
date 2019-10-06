@@ -1,1 +1,2 @@
-[res] = createGabor(45,45,100,0,0.25);
+iptsetpref('ImshowBorder','tight');
+[res] = createGabor(10,pi/4,100,0,0.25);
